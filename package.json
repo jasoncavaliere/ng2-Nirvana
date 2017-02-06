@@ -1,0 +1,20 @@
+{
+  "author": "Jason Cavaliere",
+  "name": "ng2-nurvana",
+  "description": "Nirvana extensions for Angular2",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jasoncavaliere/ng2-Nirvana",
+  "main": "./lib/main.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jasoncavaliere/ng2-Nirvana"
+  },
+  "scripts": {  },
+  "engines": {
+    "node": ">= 6.1.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vows": "0.6.x"
+  }
+}
