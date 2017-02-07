@@ -1,4 +1,9 @@
-typings.json
-tsconfig.json
-typings\*
-node_modules\*
+logs
+*.log
+npm-debug.log*
+node_modules/
+docs_generated
+src/**/*.js
+src/**/*.map
+.tmp
+test-built
