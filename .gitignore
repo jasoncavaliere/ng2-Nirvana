@@ -39,3 +39,6 @@ jspm_packages
 .idea/ng2-Nirvana.iml
 .idea/vcs.xml
 .idea/workspace.xml
+
+
+dist/*
