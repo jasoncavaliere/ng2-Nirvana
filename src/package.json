@@ -17,7 +17,9 @@
   "engines": {
     "node": ">= 6.1.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@angular/core": "^2.3.1"
+  },
   "devDependencies": {
     "@angular/common": "^2.3.1",
     "@angular/compiler": "^2.3.1",
