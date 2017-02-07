@@ -10,9 +10,13 @@ language: node_js
 node_js:
   - 6.1
 
+
 deploy:
-  - skip_cleanup: true
-  - provider: npm
-  - email: jasoncavaliere@hotmail.com
-  - api_key:"8fbc1f5f-23be-409f-b0d6-6e60bc97da30"
+  provider: npm
+  email: jasoncavaliere@hotmail.com
+  api_key: $NPM_TOKEN
+  on:
+    tags: true
+
+
 
