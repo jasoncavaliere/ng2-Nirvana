@@ -12,7 +12,7 @@
   },
   "files": [
     "./typings/main.d.ts",
-    "./ng-conf-library.ts",
+    "./ng2-nirvana-library.d.ts",
     "./src/serializer.ts"
   ]
 }

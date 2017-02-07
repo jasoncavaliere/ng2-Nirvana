@@ -1,0 +1,1 @@
+export {Serializer} from "./src/serializer";
