@@ -1,7 +1,7 @@
 System.registerDynamic("ng2-nirvana/serializer.js", [], true, function ($__require, exports, module) {
     /**
      * ng2-nirvana - Nirvana extensions for Angular2
-     * @version v0.0.4
+     * @version v0.0.5
      * @link https://github.com/jasoncavaliere/ng2-Nirvana
      * @license MIT
      */
