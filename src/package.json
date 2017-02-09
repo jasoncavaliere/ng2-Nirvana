@@ -4,7 +4,7 @@
   "description": "Nirvana extensions for Angular2",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jasoncavaliere/ng2-Nirvana"
+    "url": "https://github.com/nirvana-framework/ng2-nirvana"
   },
   "keywords": [
     "angular2",
@@ -17,7 +17,7 @@
   ],
   "author": "Jason Cavaliere",
   "license": "MIT",
-  "homepage": "https://github.com/jasoncavaliere/ng2-Nirvana",
+  "homepage": "https://github.com/nirvana-framework/ng2-nirvana",
   "main": "./lib/ng2-nirvana.ts",
   "typings": "./ng2-nirvana-library.d.ts",
   "scripts": {
