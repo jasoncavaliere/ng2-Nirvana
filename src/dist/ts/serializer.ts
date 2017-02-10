@@ -1,3 +1,9 @@
+/**
+ * ng2-nirvana - Nirvana extensions for Angular2
+ * @version v0.0.5
+ * @link https://github.com/nirvana-framework/ng2-nirvana
+ * @license MIT
+ */
 import {Subject} from "rxjs/Rx";
 export enum MessageType{Info=1,Warning=2,Error=3,Exception=4}
 export class ValidationMessage{constructor(public MessageType: MessageType,public Key: string,public Message: string){}}

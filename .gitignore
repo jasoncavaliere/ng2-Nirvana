@@ -41,5 +41,3 @@ jspm_packages
 .idea/workspace.xml
 
 
-src/dist/
-typings/

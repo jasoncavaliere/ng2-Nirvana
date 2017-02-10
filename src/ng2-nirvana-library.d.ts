@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
-import {Serializer} from "./src/serializer";
 
 @NgModule({
     imports: [],
-    declarations: [Serializer],
-    exports: [Serializer],
+    declarations: [],
+    exports: [],
     providers: []
 })
-export class Ng2NirvanaModule{ }
+export class Ng2NirvanaModule {
+}

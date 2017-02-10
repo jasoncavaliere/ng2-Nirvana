@@ -1,0 +1,35 @@
+{
+  "name": "ng2-nirvana",
+  "version": "0.0.5",
+  "description": "Nirvana extensions for Angular2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nirvana-framework/ng2-nirvana"
+  },
+  "keywords": [
+    "angular2",
+    "ng2",
+    "nirvana",
+    "angular2-nirvana",
+    "ng2-nirvana",
+    "nirvana-angular2",
+    "nirvana-ng2"
+  ],
+  "author": "Jason Cavaliere",
+  "license": "MIT",
+  "homepage": "https://github.com/nirvana-framework/ng2-nirvana",
+  "main": "./lib/ng2-nirvana.ts",
+  "typings": "./ng2-nirvana-library.d.ts",
+  "engines": {
+    "node": ">= 6.1.0"
+  },
+  "dependencies": {
+    "@angular/common": "^2.3.1",
+    "@angular/compiler": "^2.3.1",
+    "@angular/core": "^2.3.1",
+    "@angular/http": "^2.3.1",
+    "@angular/platform-browser": "^2.3.1",
+    "rxjs": "^5.0.1",
+    "zone.js": "^0.7.2"
+  }
+}
