@@ -21,8 +21,7 @@
   "main": "./lib/ng2-nirvana.ts",
   "typings": "./ng2-nirvana-library.d.ts",
   "scripts": {
-    "build:aot": "ngc -p tsconfig.json",
-    "prepublish": "typings install"
+    "build:aot": "ngc -p tsconfig.json"
   },
   "engines": {
     "node": ">= 6.1.0"
