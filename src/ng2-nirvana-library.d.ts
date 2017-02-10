@@ -1,6 +1,10 @@
-import { ModuleWithProviders } from '@angular/core';
+import {NgModule} from '@angular/core';
+import {Serializer} from "./src/serializer";
 
-export {Serializer} from "./src/serializer";
-export declare class Ng2NirvanaModule {
-    static forRoot(): ModuleWithProviders;
-}
+@NgModule({
+    imports: [],
+    declarations: [Serializer],
+    exports: [Serializer],
+    providers: []
+})
+export class Ng2NirvanaModule{ }
