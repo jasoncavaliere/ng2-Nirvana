@@ -1,9 +1,14 @@
-# ng2-nirvana
-Angular2 hooks and NPM for Nirvana framework
+# Angular Module Starter
 
-npm install ng2-nirvana
-[![Build](https://travis-ci.org/jasoncavaliere/ng2-nirvana.svg?branch=master)](https://travis-ci.org/jasoncavaliere/ng2-nirvana)
+> A start for Angular modules
 
+## Credits 
 
-[![NPM version](https://img.shields.io/npm/v/ng2-nirvana.svg?style=flat-square)](https://www.npmjs.com/package/ng2-nirvana)
+This project is basically a stripped down version of
+[angular-async-local-storage](https://github.com/cyrilletuzi/angular-async-local-storage) 
+by [https://github.com/cyrilletuzi](https://github.com/cyrilletuzi). In his blog he explains how to build a decent 
+Angular module: [https://medium.com/@cyrilletuzi/how-to-build-and-publish-an-angular-module-7ad19c0b4464#.9y88ipdk7](https://medium.com/@cyrilletuzi/how-to-build-and-publish-an-angular-module-7ad19c0b4464#.9y88ipdk7)
 
+## License
+
+MIT
