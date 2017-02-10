@@ -22,7 +22,7 @@
   "typings": "./ng2-nirvana-library.d.ts",
   "scripts": {
     "build:aot": "ngc -p tsconfig.json",
-    "prepublish": "typings install && npm test"
+    "prepublish": "typings install"
   },
   "engines": {
     "node": ">= 6.1.0"
