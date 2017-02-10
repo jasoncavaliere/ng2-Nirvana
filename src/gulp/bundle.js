@@ -60,11 +60,11 @@ function bundle(moduleName, moduleBundleName, minify, done) {
 }
 
 gulp.task('bundle:cjs', ['scripts:cjs'], (done) => {
-    bundle('ng2-nirvana/serializer','ng2-nirvana', false, done);
+    bundle('ng2-nirvana/common','ng2-nirvana', false, done);
 });
 
 gulp.task('bundle:cjs:min', ['scripts:cjs'], (done) => {
-    bundle('ng2-nirvana/serializer','ng2-nirvana', true, done);
+    bundle('ng2-nirvana/common','ng2-nirvana', true, done);
 });
 
 gulp.task('bundle', ['bundle:cjs', 'bundle:cjs:min']);

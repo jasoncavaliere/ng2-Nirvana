@@ -150,4 +150,4 @@ var ChannelSubject = (function () {
 }());
 exports.ChannelSubject = ChannelSubject;
 
-//# sourceMappingURL=serializer.js.map
+//# sourceMappingURL=common.js.map

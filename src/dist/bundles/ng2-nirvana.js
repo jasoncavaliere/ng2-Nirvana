@@ -1,4 +1,4 @@
-System.registerDynamic("ng2-nirvana/serializer.js", [], true, function ($__require, exports, module) {
+System.registerDynamic("ng2-nirvana/common.js", [], true, function ($__require, exports, module) {
     /**
      * ng2-nirvana - Nirvana extensions for Angular2
      * @version v0.0.5

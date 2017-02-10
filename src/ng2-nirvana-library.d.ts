@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-
+export * from "./src/common";
 @NgModule({
     imports: [],
     declarations: [],
