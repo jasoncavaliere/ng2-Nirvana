@@ -15,3 +15,4 @@ export { ServerException} from './models/serverException';
 export { Serializer} from './services/serializer';
 export { SignalrWindow} from './models/signalRWindow';
 export { ValidationMessage} from './models/validationMessage';
+export { Dictionary} from './models/dictionary';
