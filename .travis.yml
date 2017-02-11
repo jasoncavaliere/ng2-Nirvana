@@ -1,28 +1,23 @@
+sudo: required
+dist: trusty
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 language: node_js
-
-before_script:
-  - cd src  
-  - npm install
-  
-script: gulp
-
-
-# test on two node.js versions: 0.6 and 0.8
 node_js:
-  - 6.1
-before_deploy:
-  - cd dist
-
-deploy:
-  provider: npm
-  email: jasoncavaliere@hotmail.com
-  api_key: $NPM_TOKEN
-
-
-branches:
-  only:
-  - master
-
-
-git:
-  depth: 1
+  - stable
+before_install:
+  - npm i npm@^4 -g
+install:
+  - npm install
+script:
+  - npm test
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3
+notifications:
+  email: false

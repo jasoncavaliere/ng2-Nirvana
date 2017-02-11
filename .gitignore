@@ -1,8 +1,7 @@
-node_modules
-.vscode
-.idea
-.DS_Store
-npm-debug.log
-*.ngsummary.json
-dist/*
-!dist/package.json
+$ cat .gitignore
+/node_modules
+/dist
+/aot
+
+*.log
+*.tgz

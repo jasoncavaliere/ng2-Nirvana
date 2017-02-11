@@ -1,9 +1,0 @@
-logs
-*.log
-npm-debug.log*
-src/node_modules/
-docs_generated
-gulp/release.js
-.tmp
-test-built
-src/**/*
