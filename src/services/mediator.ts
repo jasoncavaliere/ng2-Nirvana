@@ -9,13 +9,16 @@ import { ConfigService } from "./config-service";
 @Injectable()
 export class Mediator {
 
-    public commandEndpoint: string = 'http://localhost:52509/api/';
-    public queryEndpoint: string = 'http://localhost:52509/api/';
+    public commandEndpoint: string;
+    public queryEndpoint: string;
    // private serializer: Serializer;
 
     constructor(private http: Http, private configService: ConfigService) {
         this.commandEndpoint = configService.config.commandEndpoint;
-        this.commandEndpoint = configService.config.queryEndpoint;
+        this.queryEndpoint = configService.config.queryEndpoint;
+        console.log(configService.config);
+        console.log(configService.config.commandEndpoint);
+        console.log(configService.config.queryEndpoint);
     }
 
     public query<U>(query: Query<U>): Promise<QueryResponse<U>> {
