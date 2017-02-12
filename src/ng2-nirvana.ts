@@ -12,7 +12,18 @@ export { Query} from './models/query';
 export { QueryResponse} from './models/queryResponse';
 export { Response} from './models/response';
 export { ServerException} from './models/serverException';
-export { Serializer} from './services/serializer';
 export { SignalrWindow} from './models/signalRWindow';
 export { ValidationMessage} from './models/validationMessage';
 export { Dictionary} from './models/dictionary';
+
+// components
+export { ServerMessageListComponent} from './components/server-message-list/server-message-list';
+export { BasePage} from './components/basePage';
+
+// services
+export { ConfigService} from './services/config-service';
+export { Mediator} from './services/mediator';
+export { ErrorService} from './services/errorrService';
+
+// module
+export { NirvanaModule} from './components/nirvana.module';

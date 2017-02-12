@@ -15,7 +15,7 @@ export default {
         '@angular/core': 'ng.core',
         '@angular/common': 'ng.common',
         'rxjs/Observable': 'Rx',
-        'rxjs/Observer': 'Rx'
+        'rxjs/Observer': 'Rx',
     },
     onwarn: () => { return }
 }
