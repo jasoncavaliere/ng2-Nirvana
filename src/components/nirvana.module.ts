@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule , CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ServerMessageListComponent } from "./server-message-list/server-message-list";
 import { AlertModule } from 'ng2-bootstrap';
@@ -12,6 +12,7 @@ import { AlertModule } from 'ng2-bootstrap';
         ServerMessageListComponent,
     ],
     imports: [CommonModule, AlertModule.forRoot()],
-    providers: []
+    providers: [],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class NirvanaModule {}

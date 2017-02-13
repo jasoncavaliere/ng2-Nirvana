@@ -1,11 +1,11 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Dictionary } from "../models/dictionary";
 import { ValidationMessage } from "../models/validationMessage";
+import { Response } from "../models/response";
 
 @Injectable()
 export class ErrorService {
     private errors: Dictionary<string, EventEmitter<ValidationMessage[]>>;
-    private registeredComponents: string[] = [];
 
     constructor() {
         this.errors = new Dictionary<string, EventEmitter<ValidationMessage[]>>();
@@ -35,6 +35,14 @@ export class ErrorService {
             }
         } else {
             this.errors.getValue(componentName).emit(messages);
+        }
+    }
+
+    public recieveMessages(messages: ValidationMessage[], compoenentName: string) {
+        for (let message of messages) {
+            if (message != null) {
+                console.log(`${compoenentName} - ${message.Message}`);
+            }
         }
     }
 }
