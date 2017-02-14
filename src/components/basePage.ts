@@ -31,7 +31,7 @@ export abstract class BasePage {
     }
 
     public showException(message: string) {
-        this.errorService.recieveMessages([new ValidationMessage(MessageType.Exception, "", message)], this.componentName,);
+        this.errorService.recieveMessages([new ValidationMessage(MessageType.Exception, "", message)], this.componentName);
     }
 
     public query<U>(query: Query<U>): Promise<QueryResponse<U>> {

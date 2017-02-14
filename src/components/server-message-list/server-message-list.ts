@@ -1,34 +1,45 @@
 import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import { ValidationMessage } from "../../models/validationMessage";
 import { MessageType } from "../../models/messageType";
-import { ErrorService } from "../../services/errorrService";
+import { Subject } from "rxjs";
 @Component({
     selector : 'nirvana-servermessagelist',
-    templateUrl : './server-message-list.html'
+    template : `
+        <div>
+            <h1>Alerts for {{componentName}}</h1>
+            <alert *ngFor="let alert of errorMessages;let i = index" [type]="'danger'" dismissible="false"> {{ alert?.Message}}</alert>
+            <alert *ngFor="let alert of exceptionMessages;let i = index" [type]="'danger'" dismissible="false"> {{ alert?.Message}}</alert>
+            <alert *ngFor="let alert of warningMessages;let i = index" [type]="'warning'" dismissible="false"> {{ alert?.Message}}</alert>
+            <alert *ngFor="let alert of infoMessages;let i = index" [type]="'success'" dismissible="false"> {{ alert?.Message }}</alert>
+        </div>
+        `
 })
 export class ServerMessageListComponent implements OnInit, OnDestroy {
+
+    @Input() public componentName: string;
+    @Input() public receivedMessages: Subject<ValidationMessage[]>;
 
     public infoMessages: ValidationMessage[] = [];
     public warningMessages: ValidationMessage[] = [];
     public errorMessages: ValidationMessage[] = [];
     public exceptionMessages: ValidationMessage[] = [];
-    public componentErrorsKey: string;
 
-    constructor(private errorService: ErrorService) {
+    constructor() {
         this.infoMessages = [];
         this.warningMessages = [];
         this.errorMessages = [];
         this.exceptionMessages = [];
     }
 
-    public ngOnDestroy() {
-
-        this.errorService.unregisterComponent(this.componentErrorsKey);
-    }
-
     public ngOnInit() {
-        // this.errorService.registerComponent(this.componentErrorsKey);
-        // this.onMessagesReceived.subscribe((x) => this.updateAlertComponent(alertComponent, x));
+        console.log('subscribing');
+        this.receivedMessages.subscribe((event) => {
+            this.setMessages(event);
+        });
+    }
+    public ngOnDestroy() {
+        console.log('unsubscribing');
+        this.receivedMessages.unsubscribe();
     }
 
     public clearAll() {
@@ -38,7 +49,9 @@ export class ServerMessageListComponent implements OnInit, OnDestroy {
         this.exceptionMessages = [];
     }
 
-    public setMessages(messages: ValidationMessage[]) {
+    private setMessages(messages: ValidationMessage[]) {
+        this.clearAll();
+        console.log(messages);
         for (let message of messages) {
             console.log('setting message ' + message.Message);
             if (message.Key === "") {

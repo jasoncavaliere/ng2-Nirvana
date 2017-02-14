@@ -1,6 +1,6 @@
 {
   "name": "ng2-nirvana",
-  "version": "1.0.32",
+  "version": "1.0.42",
   "description": "Angular module for Nirvana framework",
   "main": "bundles/ng2-nirvana.umd.js",
   "module": "index.js",
