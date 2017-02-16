@@ -6,7 +6,6 @@ import { Subject } from "rxjs";
     selector : 'nirvana-servermessagelist',
     template : `
         <div>
-            <h1>Alerts for {{componentName}}</h1>
             <alert *ngFor="let alert of errorMessages;let i = index" [type]="'danger'" dismissible="false"> {{ alert?.Message}}</alert>
             <alert *ngFor="let alert of exceptionMessages;let i = index" [type]="'danger'" dismissible="false"> {{ alert?.Message}}</alert>
             <alert *ngFor="let alert of warningMessages;let i = index" [type]="'warning'" dismissible="false"> {{ alert?.Message}}</alert>
