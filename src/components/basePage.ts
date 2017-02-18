@@ -1,6 +1,5 @@
 import { ValidationMessage } from "../models/validationMessage";
 import { Mediator } from "../services/mediator";
-import { ErrorService } from "../services/errorrService";
 import { MessageType } from "../models/messageType";
 import { Query } from "../models/query";
 import { QueryResponse } from "../models/queryResponse";
@@ -11,7 +10,8 @@ export abstract class BasePage {
 
     @Output() public messagesReceived = new EventEmitter();
     public messages: ValidationMessage[];
-    constructor(private mediator: Mediator, public errorService: ErrorService, public componentName: string) {
+
+    constructor(private mediator: Mediator, public componentName: string, public pageHeader: string, public pageSubHeader: string) {
     }
 
     public showSuccess() {
@@ -19,19 +19,19 @@ export abstract class BasePage {
     }
 
     public showInfo(message: string) {
-        this.errorService.showErrors(this.componentName, [new ValidationMessage(MessageType.Info, "", message)]);
+        this.messagesReceived.emit([new ValidationMessage(MessageType.Info, "", message)]);
     }
 
     public showWarning(message: string) {
-        this.errorService.showErrors(this.componentName, [new ValidationMessage(MessageType.Warning, "", message)]);
+        this.messagesReceived.emit([new ValidationMessage(MessageType.Warning, "", message)]);
     }
 
     public showError(message: string) {
-        this.errorService.showErrors(this.componentName, [new ValidationMessage(MessageType.Error, "", message)]);
+        this.messagesReceived.emit([new ValidationMessage(MessageType.Error, "", message)]);
     }
 
     public showException(message: string) {
-        this.errorService.recieveMessages([new ValidationMessage(MessageType.Exception, "", message)], this.componentName);
+        this.messagesReceived.emit([new ValidationMessage(MessageType.Exception, "", message)]);
     }
 
     public query<U>(query: Query<U>): Promise<QueryResponse<U>> {

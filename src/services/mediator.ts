@@ -6,7 +6,6 @@ import { QueryResponse } from "../models/queryResponse";
 import { CommandResponse } from "../models/commandResponse";
 import { Headers, Http } from '@angular/http';
 import { ConfigService } from "./config-service";
-import { ErrorService } from "./errorrService";
 @Injectable()
 export class Mediator {
 
@@ -14,7 +13,7 @@ export class Mediator {
     public queryEndpoint: string;
     // private serializer: Serializer;
 
-    constructor(private http: Http, private configService: ConfigService, private errorService: ErrorService) {
+    constructor(private http: Http, private configService: ConfigService) {
         this.commandEndpoint = configService.config.commandEndpoint;
         this.queryEndpoint = configService.config.queryEndpoint;
         console.log(configService.config);
