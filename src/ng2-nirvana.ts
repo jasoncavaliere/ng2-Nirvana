@@ -23,6 +23,7 @@ export { BasePage} from './components/basePage';
 // services
 export { ConfigService} from './services/config-service';
 export { Mediator} from './services/mediator';
+export { AuthTokenResolver } from "./services/AuthTokenResolver";
 
 // module
 export { NirvanaModule} from './components/nirvana.module';

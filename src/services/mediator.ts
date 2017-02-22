@@ -6,14 +6,17 @@ import { QueryResponse } from "../models/queryResponse";
 import { CommandResponse } from "../models/commandResponse";
 import { Headers, Http } from '@angular/http';
 import { ConfigService } from "./config-service";
+import { AuthTokenResolver } from "./AuthTokenResolver";
+
 @Injectable()
 export class Mediator {
 
     public commandEndpoint: string;
     public queryEndpoint: string;
+    public getToken: (url: string) => string;
     // private serializer: Serializer;
 
-    constructor(private http: Http, private configService: ConfigService) {
+    constructor(private http: Http, private configService: ConfigService, private tokenResolver: AuthTokenResolver) {
         this.commandEndpoint = configService.config.commandEndpoint;
         this.queryEndpoint = configService.config.queryEndpoint;
         console.log(configService.config);
@@ -21,17 +24,22 @@ export class Mediator {
         console.log(configService.config.queryEndpoint);
     }
 
+    public setTokenCallback(callback: (url: string) => string) {
+        this.getToken = callback;
+    }
+
     public query<U>(query: Query<U>): Promise<QueryResponse<U>> {
         let url = this.getQueryUrl(query) + '?' + this.objectToParams(query);
         return this.http
-            .get(url, {headers : this.getHeaders()})
+            .get(url, {headers : this.getHeaders(url)})
             .toPromise()
             .then((res) => res.json());
     }
 
     public command<U>(command: Command<U>): Promise<CommandResponse<U>> {
+        let url = this.getCommandUrl(command);
         return this.http
-            .post(this.getCommandUrl(command), JSON.stringify(command), {headers : this.getHeaders()})
+            .post(this.getCommandUrl(command), JSON.stringify(command), {headers : this.getHeaders(url)})
             .toPromise()
             .then((res) => res.json());
     }
@@ -60,9 +68,12 @@ export class Mediator {
         return url;
     }
 
-    private getHeaders() {
+    private getHeaders(url: string) {
         let headers = new Headers({'Content-Type' : 'application/json'});
-        //  headers.append('Authorization', `Bearer ${this.security.getToken()}`);
+
+        if (this.tokenResolver.isEnabled) {
+            headers.append('Authorization', 'Bearer ' + this.tokenResolver.getToken(url));
+        }
         return headers;
     }
 

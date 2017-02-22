@@ -5,7 +5,7 @@ import { Query } from "../models/query";
 import { QueryResponse } from "../models/queryResponse";
 import { CommandResponse } from "../models/commandResponse";
 import { Command } from "../models/command";
-import { EventEmitter, Output } from "@angular/core";
+import { EventEmitter, Output, Input } from "@angular/core";
 export abstract class BasePage {
 
     @Output() public messagesReceived = new EventEmitter();
