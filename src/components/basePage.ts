@@ -9,7 +9,6 @@ import { EventEmitter, Output, Input } from "@angular/core";
 export abstract class BasePage {
 
     @Output() public messagesReceived = new EventEmitter();
-    public messages: ValidationMessage[];
 
     constructor(private mediator: Mediator, public componentName: string, public pageHeader: string, public pageSubHeader: string) {
     }
@@ -38,9 +37,11 @@ export abstract class BasePage {
         return this.mediator.query(query)
             .then((res) => {
                 let result = <QueryResponse<U>> res;
-                console.log('emitting messages');
                 this.messagesReceived.emit(result.ValidationMessages);
-                this.messages = result.ValidationMessages;
+                return <QueryResponse<U>> res;
+            }, (res) => {
+                let result = <QueryResponse<U>> res;
+                this.messagesReceived.emit(result.ValidationMessages);
                 return <QueryResponse<U>> res;
             });
     }
@@ -49,9 +50,11 @@ export abstract class BasePage {
         return this.mediator.command(command)
             .then((res) => {
                 let result = <QueryResponse<U>> res;
-                console.log('emitting messages');
                 this.messagesReceived.emit(result.ValidationMessages);
-                this.messages = result.ValidationMessages;
+                return <QueryResponse<U>> res;
+            }, (res) => {
+                let result = <QueryResponse<U>> res;
+                this.messagesReceived.emit(result.ValidationMessages);
                 return <QueryResponse<U>> res;
             });
     }

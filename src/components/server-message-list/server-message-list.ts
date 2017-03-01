@@ -31,13 +31,11 @@ export class ServerMessageListComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit() {
-        console.log('subscribing');
         this.receivedMessages.subscribe((event) => {
             this.setMessages(event);
         });
     }
     public ngOnDestroy() {
-        console.log('unsubscribing');
         this.receivedMessages.unsubscribe();
     }
 
@@ -50,9 +48,7 @@ export class ServerMessageListComponent implements OnInit, OnDestroy {
 
     private setMessages(messages: ValidationMessage[]) {
         this.clearAll();
-        console.log(messages);
         for (let message of messages) {
-            console.log('setting message ' + message.Message);
             if (message.Key === "") {
                 switch (message.MessageType) {
                     case MessageType.Error:

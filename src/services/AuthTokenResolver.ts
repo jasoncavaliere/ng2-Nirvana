@@ -6,8 +6,8 @@ export class AuthTokenResolver {
         this.isEnabled = false;
     }
 
-    public getToken(url: string) {
-        return null;
+    public getToken(url: string): Promise<string> {
+        return Promise.resolve(null);
     }
 
 }

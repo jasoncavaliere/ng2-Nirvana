@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
-import { isJsObject } from "@angular/platform-browser-dynamic/src/facade/lang";
 import { Command } from "../models/command";
 import { Query } from "../models/query";
 import { QueryResponse } from "../models/queryResponse";
 import { CommandResponse } from "../models/commandResponse";
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, URLSearchParams } from '@angular/http';
 import { ConfigService } from "./config-service";
 import { AuthTokenResolver } from "./AuthTokenResolver";
 
@@ -13,49 +12,49 @@ export class Mediator {
 
     public commandEndpoint: string;
     public queryEndpoint: string;
-    public getToken: (url: string) => string;
-    // private serializer: Serializer;
 
     constructor(private http: Http, private configService: ConfigService, private tokenResolver: AuthTokenResolver) {
         this.commandEndpoint = configService.config.commandEndpoint;
         this.queryEndpoint = configService.config.queryEndpoint;
-        console.log(configService.config);
-        console.log(configService.config.commandEndpoint);
-        console.log(configService.config.queryEndpoint);
-    }
-
-    public setTokenCallback(callback: (url: string) => string) {
-        this.getToken = callback;
     }
 
     public query<U>(query: Query<U>): Promise<QueryResponse<U>> {
         let url = this.getQueryUrl(query) + '?' + this.objectToParams(query);
-        return this.http
-            .get(url, {headers : this.getHeaders(url)})
-            .toPromise()
-            .then((res) => res.json());
+        return this.tokenResolver.getToken(this.queryEndpoint).then((token) => this.doQuery(query, url, token));
     }
 
     public command<U>(command: Command<U>): Promise<CommandResponse<U>> {
         let url = this.getCommandUrl(command);
+        return this.tokenResolver.getToken(this.commandEndpoint).then((token) => this.doCommand(command, url, token));
+    }
+
+    private doQuery<U>(query: Query<U>, url: string, token: string): Promise<QueryResponse<U>> {
         return this.http
-            .post(this.getCommandUrl(command), JSON.stringify(command), {headers : this.getHeaders(url)})
+            .get(url, {
+                headers : this.getHeaders(url, token),
+                search : this.objectToParams(query)
+            })
             .toPromise()
-            .then((res) => res.json());
+            .then((res) => res.json(), (res) => res.json());
     }
 
-    private objectToParams(object): string {
-        return Object.keys(object).map((key) => this.isEndPoint(key) ? '' : isJsObject(object[key]) ?
-                this.subObjectToParams(encodeURIComponent(key), object[key])
-                : `${encodeURIComponent(key)}=${this.cleanseValue(object, key)}`
-        ).join('&');
+    private doCommand<U>(command: Command<U>, url: string, token: string): Promise<CommandResponse<U>> {
+        return this.http
+            .post(this.getCommandUrl(command), JSON.stringify(command), {headers : this.getHeaders(url, token)})
+            .toPromise()
+            .then((res) => res.json(), (res) => res.json());
     }
 
-    private cleanseValue(object, key) {
-        if (object[key] == null) {
-            return '';
+    private objectToParams(object: any): URLSearchParams {
+        let params: URLSearchParams = new URLSearchParams();
+
+        for (let key of Object.keys(object)) {
+            if (!object.hasOwnProperty(key) || this.isEndPoint(key)) {
+                continue;
+            }
+            params.set(key, JSON.stringify(object[key]));
         }
-        return encodeURIComponent(object[key]);
+        return params;
     }
 
     private getCommandUrl<U>(command: Command<U>) {
@@ -68,24 +67,13 @@ export class Mediator {
         return url;
     }
 
-    private getHeaders(url: string) {
+    private getHeaders(url: string, token: string) {
         let headers = new Headers({'Content-Type' : 'application/json'});
 
         if (this.tokenResolver.isEnabled) {
-            headers.append('Authorization', 'Bearer ' + this.tokenResolver.getToken(url));
+            headers.append('Authorization', 'Bearer ' + token);
         }
         return headers;
-    }
-
-    private subObjectToParams(key, object): string {
-
-        return Object.keys(object)
-            .map((childKey) => this.isEndPoint(key) ? '' : isJsObject(object[childKey]) ?
-                        this.subObjectToParams(`${key}[${encodeURIComponent(childKey)}]`, object[childKey])
-
-                        : `${key}[${encodeURIComponent(childKey)}]=${this.cleanseValue(object, childKey)}`
-                // :`${key}[${encodeURIComponent(childKey)}]=${encodeURIComponent(object[childKey])}`
-            ).join('&');
     }
 
     // endpointName and typescriptPlace are used only for communication and TS copatability
