@@ -19,7 +19,7 @@ export class Mediator {
     }
 
     public query<U>(query: Query<U>): Promise<QueryResponse<U>> {
-        let url = this.getQueryUrl(query) + '?' + this.objectToParams(query);
+        let url = this.getQueryUrl(query) + '?' + this.getAsUriParameters(query);
         return this.tokenResolver.getToken(this.queryEndpoint).then((token) => this.doQuery(query, url, token));
     }
 
@@ -40,7 +40,7 @@ export class Mediator {
 
     private doCommand<U>(command: Command<U>, url: string, token: string): Promise<CommandResponse<U>> {
         return this.http
-            .post(this.getCommandUrl(command), JSON.stringify(command), {headers : this.getHeaders(url, token)})
+            .post(url, command, {headers : this.getHeaders(url, token)})
             .toPromise()
             .then((res) => res.json(), (res) => res.json());
     }
@@ -55,6 +55,19 @@ export class Mediator {
             params.set(key, JSON.stringify(object[key]));
         }
         return params;
+    }
+
+    private getAsUriParameters(data) {
+        return Object.keys(data).map(function (k) {
+            if (Array.isArray(data[k])) {
+                var keyE = encodeURIComponent(k + '[]');
+                return data[k].map(function (subData) {
+                    return keyE + '=' + encodeURIComponent(subData);
+                }).join('&');
+            } else {
+                return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]);
+            }
+        }).join('&');
     }
 
     private getCommandUrl<U>(command: Command<U>) {

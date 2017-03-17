@@ -5,12 +5,14 @@ import { Query } from "../models/query";
 import { QueryResponse } from "../models/queryResponse";
 import { CommandResponse } from "../models/commandResponse";
 import { Command } from "../models/command";
-import { EventEmitter, Output, Input } from "@angular/core";
+import { EventEmitter, Output } from "@angular/core";
+import { Subject } from "rxjs";
 export abstract class BasePage {
 
     @Output() public messagesReceived = new EventEmitter();
+    @Output() public receivedMessages: Subject<ValidationMessage[]> = new Subject();
 
-    constructor(private mediator: Mediator, public componentName: string, public pageHeader: string, public pageSubHeader: string) {
+    constructor(public mediator: Mediator, public componentName: string, public pageHeader: string, public pageSubHeader: string) {
     }
 
     public showSuccess() {
