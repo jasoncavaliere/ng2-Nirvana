@@ -1,4 +1,4 @@
-import { Subject } from "rxjs";
+import { Subject } from "rxjs/Subject";
 import { ChannelEvent } from "./channelEvent";
 export class ChannelSubject {
     public channel: string;

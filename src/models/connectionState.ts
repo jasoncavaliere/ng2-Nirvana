@@ -1,6 +1,8 @@
-export enum ConnectionState {
+enum ConnectionState {
     Connecting = 1,
     Connected = 2,
     Reconnecting = 3,
     Disconnected = 4
 }
+
+export default ConnectionState;

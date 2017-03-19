@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import { ValidationMessage } from "../../models/validationMessage";
-import { MessageType } from "../../models/messageType";
-import { Subject } from "rxjs";
+import { Subject } from "rxjs/Subject";
+import MessageType from "../../models/messageType";
+
 @Component({
     selector : 'nirvana-servermessagelist',
     template : `

@@ -5,8 +5,6 @@ export { ChannelEvent} from './models/channelEvent';
 export { ChannelSubject} from './models/channelSubject';
 export { Command} from './models/command';
 export { CommandResponse} from './models/commandResponse';
-export { ConnectionState} from './models/connectionState';
-export { MessageType} from './models/messageType';
 export { PagedResult} from './models/pagedResult';
 export { Query} from './models/query';
 export { QueryResponse} from './models/queryResponse';

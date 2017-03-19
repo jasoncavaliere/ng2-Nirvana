@@ -3,9 +3,9 @@ import { Command } from "../models/command";
 import { Query } from "../models/query";
 import { QueryResponse } from "../models/queryResponse";
 import { CommandResponse } from "../models/commandResponse";
-import { Headers, Http, URLSearchParams } from '@angular/http';
 import { ConfigService } from "./config-service";
 import { AuthTokenResolver } from "./AuthTokenResolver";
+import { Http, Headers } from "@angular/http";
 
 @Injectable()
 export class Mediator {
@@ -58,12 +58,10 @@ export class Mediator {
     }
 
     private getAsUriParameters(data) {
-        return Object.keys(data).map(function (k) {
+        return Object.keys(data).map((k) => {
             if (Array.isArray(data[k])) {
-                var keyE = encodeURIComponent(k + '[]');
-                return data[k].map(function (subData) {
-                    return keyE + '=' + encodeURIComponent(subData);
-                }).join('&');
+                let keyE = encodeURIComponent(k + '[]');
+                return data[k].map((subData) => keyE + '=' + encodeURIComponent(subData)).join('&');
             } else {
                 return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]);
             }
