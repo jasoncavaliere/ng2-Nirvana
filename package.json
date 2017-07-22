@@ -1,6 +1,6 @@
 {
   "name": "ng2-nirvana",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "Angular module for Nirvana framework",
   "main": "bundles/ng2-nirvana.umd.js",
   "module": "index.js",
@@ -38,7 +38,7 @@
     "@angular/platform-browser": "^4.3.0",
     "@angular/platform-browser-dynamic": "^4.3.0",
     "@angular/platform-server": "^4.3.0",
-    "@angular/router":"^4.3.0",
+    "@angular/router": "^4.3.0",
     "rxjs": "^5.4.2",
     "typescript": "^2.4.1",
     "zone.js": "^0.8.14"

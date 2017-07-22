@@ -38,26 +38,26 @@ export abstract class BasePage {
     public query<U>(query: Query<U>): Promise<QueryResponse<U>> {
         return this.mediator.query(query)
             .then((res) => {
-                let result = <QueryResponse<U>> res;
+                const result = res as QueryResponse<U>;
                 this.messagesReceived.emit(result.ValidationMessages);
-                return <QueryResponse<U>> res;
+                return res as QueryResponse<U>;
             }, (res) => {
-                let result = <QueryResponse<U>> res;
+                const result = res as QueryResponse<U>;
                 this.messagesReceived.emit(result.ValidationMessages);
-                return <QueryResponse<U>> res;
+                return res as QueryResponse<U>;
             });
     }
 
     public command<U>(command: Command<U>): Promise<CommandResponse<U>> {
         return this.mediator.command(command)
             .then((res) => {
-                let result = <QueryResponse<U>> res;
+                const result = res as QueryResponse<U>;
                 this.messagesReceived.emit(result.ValidationMessages);
-                return <QueryResponse<U>> res;
+                return res as QueryResponse<U>;
             }, (res) => {
-                let result = <QueryResponse<U>> res;
+                const result = res as QueryResponse<U>;
                 this.messagesReceived.emit(result.ValidationMessages);
-                return <QueryResponse<U>> res;
+                return res as QueryResponse<U>;
             });
     }
 }

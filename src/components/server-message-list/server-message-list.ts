@@ -49,7 +49,7 @@ export class ServerMessageListComponent implements OnInit, OnDestroy {
 
     private setMessages(messages: ValidationMessage[]) {
         this.clearAll();
-        for (let message of messages) {
+        for (const message of messages) {
             if (message.Key === "") {
                 switch (message.MessageType) {
                     case MessageType.Error:

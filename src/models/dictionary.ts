@@ -6,7 +6,7 @@ export class Dictionary<T extends number | string, U> {
 
     public add(key: T, value: U): void {
 
-        let addAction = (k: T, v: U): void => {
+        const addAction = (k: T, v: U): void => {
             if (this.containsKey(k)) {
                 throw new Error("An element with the same key already exists in the dictionary.");
             }
@@ -19,52 +19,52 @@ export class Dictionary<T extends number | string, U> {
     }
 
     public remove(key: T): boolean {
-        let removeAction = (k: T): boolean => {
+        const removeAction = (k: T): boolean => {
             if (!this.containsKey(k)) {
                 return false;
             }
-            let index = this.keysInternal.indexOf(k);
+            const index = this.keysInternal.indexOf(k);
             this.keysInternal.splice(index, 1);
             this.valuesInternal.splice(index, 1);
             return true;
         };
-        return <boolean> (this.checkKeyAndPerformAction(removeAction, key));
+        return (this.checkKeyAndPerformAction(removeAction, key)) as boolean;
     }
 
     public getValue(key: T): U {
 
-        let getValueAction = (k: T): U => {
+        const getValueAction = (k: T): U => {
             if (!this.containsKey(k)) {
                 return null;
             }
 
-            let index = this.keysInternal.indexOf(k);
+            const index = this.keysInternal.indexOf(k);
             return this.valuesInternal[index];
         };
 
-        return <U> this.checkKeyAndPerformAction(getValueAction, key);
+        return this.checkKeyAndPerformAction(getValueAction, key) as U;
     }
 
     public containsKey(key: T): boolean {
 
-        let containsKeyAction = (k: T): boolean => {
+        const containsKeyAction = (k: T): boolean => {
             if (this.keysInternal.indexOf(k) === -1) {
                 return false;
             }
             return true;
         };
 
-        return <boolean> this.checkKeyAndPerformAction(containsKeyAction, key);
+        return  this.checkKeyAndPerformAction(containsKeyAction, key) as boolean;
     }
 
     public changeValueForKey(key: T, newValue: U): void {
 
-        let changeValueForKeyAction = (k: T, nv: U): void => {
+        const changeValueForKeyAction = (k: T, nv: U): void => {
             if (!this.containsKey(k)) {
                 throw new Error("In the dictionary there is no element with the given key.");
             }
 
-            let index = this.keysInternal.indexOf(k);
+            const index = this.keysInternal.indexOf(k);
             this.valuesInternal[index] = nv;
         };
 
@@ -87,7 +87,7 @@ export class Dictionary<T extends number | string, U> {
         return (typeof object) === "undefined" || object === null || object.toString() === "";
     }
 
-    private checkKeyAndPerformAction(action: {(key: T, value?: U): void | U | boolean}, key: T, value?: U): void | U | boolean {
+    private checkKeyAndPerformAction(action: (key: T, value?: U) => void | U | boolean, key: T, value?: U): void | U | boolean {
 
         if (this.isEitherUndefinedNullOrStringEmpty(key)) {
             throw new Error(this.undefinedKeyErrorMessage);

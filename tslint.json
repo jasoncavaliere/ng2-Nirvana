@@ -14,6 +14,7 @@
         "no-input-rename": true,
         "no-output-rename": true,
         "no-console": false,
+        "no-shadowed-variable":false,
         "no-forward-ref": true,
         "use-life-cycle-interface": true,
         "use-pipe-transform-interface": true,
