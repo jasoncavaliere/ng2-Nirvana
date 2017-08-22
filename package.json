@@ -1,6 +1,6 @@
 {
   "name": "ng2-nirvana",
-  "version": "1.1.4",
+  "version": "1.1.6",
   "description": "Angular module for Nirvana framework",
   "main": "bundles/ng2-nirvana.umd.js",
   "module": "index.js",
@@ -27,24 +27,23 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@angular/animations": "^4.3.0",
+    "@angular/animations": "^4.3.5",
     "@angular/cli": "^1.0.0",
-    "@angular/common": "^4.3.0",
-    "@angular/compiler": "^4.3.0",
-    "@angular/compiler-cli": "^4.3.0",
-    "@angular/core": "^4.3.0",
-    "@angular/forms": "^4.3.0",
-    "@angular/http": "^4.3.0",
-    "@angular/platform-browser": "^4.3.0",
-    "@angular/platform-browser-dynamic": "^4.3.0",
-    "@angular/platform-server": "^4.3.0",
-    "@angular/router": "^4.3.0",
+    "@angular/common": "^4.3.5",
+    "@angular/compiler": "^4.3.5",
+    "@angular/compiler-cli": "^4.3.5",
+    "@angular/core": "^4.3.5",
+    "@angular/forms": "^4.3.5",
+    "@angular/http": "^4.3.5",
+    "@angular/platform-browser": "^4.3.5",
+    "@angular/platform-browser-dynamic": "^4.3.5",
+    "@angular/platform-server": "^4.3.5",
+    "@angular/router": "^4.3.5",
     "rxjs": "^5.4.2",
     "typescript": "^2.4.1",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
-    "@angular/cli": "1.2.1",
     "@types/jasmine": "2.5.53",
     "@types/node": "^8.0.14",
     "codelyzer": "~3.1.2",
@@ -56,9 +55,9 @@
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
+    "shelljs": "^0.7.8",
     "ts-node": "~3.2.0",
     "tslint": "~5.5.0",
-    "typescript": "^2.4.1",
-    "shelljs": "^0.7.8"
+    "typescript": "^2.4.1"
   }
 }
